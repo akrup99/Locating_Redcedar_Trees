@@ -1,6 +1,6 @@
 # Ally Kruper
 # Last updated 4/2/2024
-# Goal: match ground trees to trees automatically identified and segmented by FUSION in the "2023_Cedar_Process_Lidar_Data.R" code
+# Goal: Process matched ground to lidar trees for cloud metrics
 
 # THIS CODE IS MODIFIED BY CODE ORIGINALLY WRITTEN BY BOB MCGAUGHEY THAT CAN BE FOUND ON HIS GITHUB HERE: https://github.com/bmcgaughey1/DroneLidarCode/blob/main/Rcode/ClipAdjTreeData.R
 
