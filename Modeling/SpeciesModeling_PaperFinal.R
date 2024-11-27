@@ -1649,7 +1649,7 @@ for (i in 1:length(xfold$splits)) {
 mean(as.numeric(vFoldCV_Accuracies$Accuracy)) # mean accuracy 85%
 sd(as.numeric(vFoldCV_Accuracies$Accuracy)) # sd 10%
 
-#### Testing out 10-fold cross-validation on the MS and lidar; ONF; small cylinder model #####
+#### 10-fold cross-validation on the MS and lidar; ONF; small cylinder model #####
 LidarModelData <- read.csv("data/LidarMetrics/FieldTrees/Leaning_Trees_SmallCylinder_normalized_ConeClip_metrics.csv")
 MSModelData <- read.csv("data/MS_Data/all_trees_w_MS_values_cleaned_for_thesis.csv")
 
