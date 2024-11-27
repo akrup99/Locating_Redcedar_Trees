@@ -1,7 +1,13 @@
 # Ally Kruper
 # last updated 1/29/24
 # Code to clip and convert LAZ files to las files for importing into FUSION for individual matching
-# Much of the code is copied from CHMcreation code (see that script for code details##Install below packages first if not installed already
+
+# Install below packages first if not installed already
+
+# Note: This code is not the most efficient way to do this clipping (would now use plot centers and would create a buffer around plot center in ArcGIS Pro -->
+# would then clip the LAZ files to those extents). This is just what I did at the time. This also only shows one plot because
+# I would replace the plot that I was working with with a new plot once I was done with it (re-using the same code and just changing the 
+# file loaded), something else I wouldn't do again.
 
 
 # loading packages
