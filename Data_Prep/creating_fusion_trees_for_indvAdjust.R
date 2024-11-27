@@ -97,76 +97,6 @@ all_plots[, 'Height_ft'] = NA # creating new empty column for the heights (guess
 all_plots[which(is.na(all_plots$DBH_in)), "DBH_in"] <- 8.892359 # need to do something where we don't have DBH --> 
                                                                    # going to set it to 8.892359 (average DBH)
 
-# this is a very, very long way to do this. See below for a much better way,
-  # and the way I ended up doing it
-for(i in 1:nrow(all_plots)) {
-  if(all_plots[i, "DBH_in"] >= 3.0) {
-    if(all_plots[i,"Species"] == "THPL") {
-      all_plots[i,"Height_ft"] <- 4.5 + (665.0944 * (exp(-5.5002*((all_plots[i,"DBH_in"])^-0.3246))))
-    } else {
-      if(all_plots[i, "Species"] == "TSHE") {
-        all_plots[i,"Height_ft"] <- 4.5 + (609.4235 * (exp(-5.5919*((all_plots[i,"DBH_in"])^-0.3841))))
-      } else {
-        if(all_plots[i, "Species"] == "ALRU") {
-          all_plots[i,"Height_ft"] <- 4.5 + (139.4551 * (exp(-4.6989*((all_plots[i,"DBH_in"])^-0.7682))))
-        } else {
-          if(all_plots[i, "Species"] == "PSME") {
-            all_plots[i,"Height_ft"] <- 4.5 + (1091.853 * (exp(-5.2936*((all_plots[i,"DBH_in"])^-0.2648))))
-          } else {
-            if(all_plots[i, "Species"] == "PISI") {
-              all_plots[i,"Height_ft"] <- 4.5 + (3844.388 * (exp(-7.068*((all_plots[i,"DBH_in"])^-0.2122))))
-            } else {
-              if(all_plots[i, "Species"] == "ABAM") {
-                all_plots[i,"Height_ft"] <- 4.5 + (697.6316 * (exp(-6.6807*((all_plots[i,"DBH_in"])^-0.4161))))
-              } else {
-                if(all_plots[i, "Species"] == "ACCI" | all_plots[i, "Species"] == "RHPU" | all_plots[i, "Species"] == "UNKN" | all_plots[i, "Species"] ==  "MAFU") {
-                  all_plots[i,"Height_ft"] <- 4.5 + (1709.723 * (exp(-5.8887*((all_plots[i,"DBH_in"])^-0.2286))))
-                } else {
-                  all_plots[i, "Height_ft"] <- NA
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  } else {
-    if(all_plots[i,"Species"] == "THPL") {
-      all_plots[i, "Height_ft"] <- ((4.5 + (665.0944 * (exp(-5.5002*(3.0^-0.3246)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-    } else {
-      if(all_plots[i, "Species"] == "TSHE") {
-        all_plots[i, "Height_ft"] <- ((4.5 + (609.4235 * (exp(-5.5919*(3.0^-0.3841)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-      } else {
-        if(all_plots[i, "Species"] == "ALRU") {
-          all_plots[i, "Height_ft"] <- ((4.5 + (139.4551 * (exp(-4.6989*(3.0^-0.7682)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-        } else {
-          if(all_plots[i, "Species"] == "PSME") {
-            all_plots[i, "Height_ft"] <- ((4.5 + (1091.853 * (exp(-5.2936*(3.0^-0.2648)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-          } else {
-            if(all_plots[i, "Species"] == "PISI") {
-              all_plots[i, "Height_ft"] <- ((4.5 + (3844.388 * (exp(-7.068*(3.0^-0.2122)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-            } else {
-              if(all_plots[i, "Species"] == "ABAM") {
-                all_plots[i, "Height_ft"] <- ((4.5 + (697.6316 * (exp(-6.6807*(3.0^-0.4161)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-              } else {
-                if(all_plots[i, "Species"] == "ACCI" | all_plots[i, "Species"] == "RHPU" | all_plots[i, "Species"] == "UNKN" | all_plots[i, "Species"] ==  "MAFU") {
-                  all_plots[i, "Height_ft"] <- ((4.5 + (1709.723 * (exp(-5.8887*(3.0^-0.2286)))) - 4.51) * (((all_plots[i,"DBH_in"]) - 3) / 2.7)) + 4.51
-                } else {
-                  all_plots[i, "Height_ft"] <- NA
-                }  
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-all_plots[,c("DBH_in", "Species", "Height_ft")]
-range(all_plots$Height_ft)
-
-# trying it a different, much more flexible way
 eq.coef <- data.frame( # making dataframe with all the species and associated coefficients used for the equations
   Species = c("THPL", "TSHE", "ALRU", "PSME", "PISI", "ABAM", "ACCI", "RHPU", "UNKN", "MAFU"),
   p2 = c(665.0944, 609.4235, 139.4551, 1091.853, 3844.388, 697.6316, 1709.723, 1709.723, 1709.723, 1709.723),
@@ -174,7 +104,7 @@ eq.coef <- data.frame( # making dataframe with all the species and associated co
   p4 = c(-0.3246, -0.3841, -0.7682, -0.2648, -0.2122, -0.4161, -0.2286, -0.2286, -0.2286, -0.2286)
 )
 
-# the better way to do it. The under 3 inches kept giving negative numbers and the over 3in equation seemed to work fine for those
+# The under 3 inches kept giving negative numbers and the over 3in equation seemed to work fine for those
   # smaller trees anyway, so I ended up doing all trees with that equation. However, I kept the if/else statement just in case that changes
 for(i in 1:nrow(all_plots)) { # runs the following code for functionally every tree in the dataset
   species <- all_plots[i, "Species"] # finds out which species is associated with the tree in question
