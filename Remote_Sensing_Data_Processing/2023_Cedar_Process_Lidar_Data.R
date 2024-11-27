@@ -1,8 +1,9 @@
+# CODE 6
+# This code segments and runs FUSION CloudMetrics on full lidar extent (to be used when predicting species outside of plots)
+
 # Ally Kruper
 # last updated 3/11/24
 # Goal: Process lidar data for 2023 cedar plots (calculate cloud metrics)
-
-# Completed on the PC computer in Wink 203 (Bernard's desk)
 
 ## Code is from Bob's code!! Slightly modified for this year's data
 ## Github link: https://github.com/bmcgaughey1/DroneLidarCode/blob/main/Rcode/Process2022Data.R
@@ -28,19 +29,13 @@ renameCheck <- function(from = "", to = "") {
     cat("Move failed for: ", from, "\n")
 }
 
-# manually created a directory list for projects
-# The following command will get you a list of all folder names. This can then be edited to
-# remove the subfolder names under each project. Somewhat tedious but easier than writing code
-# to do the same thing (or at least more straight forward).
-# dir /s /a:d /b
-
 
 # projection for for UTM10...this is used for several outputs
 # working directoryt is set at "F:/workspace/OESF/AllyCedarFUSIONWork"
 prjFile <- "UTM10.prj"
 
 # read in the list of project folders
-# Ally note: Note that the working directly is set to "F:/workspace/OESF/AllyCedarFUSIONWork"
+# Ally note: Note that the working directly is set to "F:/workspace/OESF/AllyCedarFUSIONWork". dirlist.text file was manually created
 dirList <- "dirlist.txt"
 dirs <- read.csv2(dirList, header = FALSE)
 
@@ -95,18 +90,6 @@ for (i in 1:length(dirs)) {
            horizdatum = 2,
            vertdatum = 2)
 }
-# Ally comment: I don't think that the lidar data knows what projection it is in --> fixing that now
-#install.packages("lidR")
-library(lidR)
-for (i in 1:length(dirs)) {
-  folderName <- dirs[[i]]
-  ctg <- readLAScatalog(folderName)
-  print(ctg) # double check that it didn't have an associated projection to begin with
-  st_crs(ctg) <- prjFile
-  print(ctg) # double check that setting the new projection worked
-}
-
-
 
 # we should have clean data ready for further processing...
 
