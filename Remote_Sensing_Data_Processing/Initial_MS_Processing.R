@@ -1,3 +1,6 @@
+# CODE 4
+# This code uses the raw image files, stretches them, and combines them into the MS metrics indices
+
 # The following is all from Bob McGaughey, and can be found on his Github: https://github.com/bmcgaughey1/DroneLidar2023/tree/main
 # This is combined pieces from 3 scripts in that repository: FileSystem.R, CompositeImages.R, and PlotBooks.R
 
