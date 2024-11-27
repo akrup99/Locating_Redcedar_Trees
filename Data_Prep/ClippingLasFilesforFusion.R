@@ -1,3 +1,7 @@
+# CODE 2
+# The purpose of this code is to clip that LAZ files to the plot extents (plus a little buffer) for the individual tree matching in FUSION 
+  # (matching field trees to trees in the lidar)
+
 # Ally Kruper
 # last updated 1/29/24
 # Code to clip and convert LAZ files to las files for importing into FUSION for individual matching
