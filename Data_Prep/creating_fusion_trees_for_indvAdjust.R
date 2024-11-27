@@ -1,3 +1,6 @@
+# CODE 3
+# This code uses tree locations from stem maps that have been moved at the plot level in ArcGIS Pro
+
 # Code by Ally Kruper
 # Last updated 1/24/24
 
