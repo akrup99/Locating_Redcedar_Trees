@@ -1,3 +1,6 @@
+# CODE 1
+# This uses 2023 tree plot data that has been compiled and cleaned.
+
 # Ally Kruper
 # Using code obtained by Bob McGaughey, added to / edited by Ally Kruper
 # Last updated 1/9/2024
