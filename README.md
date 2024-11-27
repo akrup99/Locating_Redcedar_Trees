@@ -5,3 +5,5 @@ Due to the sensitive nature of western redcedar tree locations, particularly the
 
 Each script in labeled at the top with a number indicating the order in which the codes should be run (starting at 1) and the overall use/purpose of the code, as well as the 
 data that the code primarily uses.
+
+![image](https://github.com/user-attachments/assets/9079b425-55e8-4c3c-ba16-46d414e6a728)
