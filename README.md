@@ -1,4 +1,6 @@
 # Locating_Redcedar_Trees
+*Olympic Natural Resources Center, School of Environmental and Forest Sciences, University of Washington, USA* 
+
 This repository was created to support the scientific publication "Locating western redcedar trees using UAV LiDAR and multispectral imagery", in review. Please refer to this publication for the methodology involved in this study. This study is based on the west side of the Olympic Peninsula, primarily in the Olympic Experimental State Forest, but also including some plots in the Olympic National Forest as well. Remote sensing data includes UAV LiDAR and multispectral imagery.
 
 Due to the sensitive nature of western redcedar tree locations, particularly their vulnerability to theft, this repository will only host R scripts. The full results of this study (i.e. any resultant maps predicting western recedar locations) as well as the original remote sensing data will not be made available. The hope is that the R scripts will allow replicability without compromising sensitive cedar locations.
